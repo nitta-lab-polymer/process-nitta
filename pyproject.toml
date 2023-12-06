@@ -3,8 +3,8 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
+dynamic = ["version"]
 name = "process-nitta"
-version = "0.0.1"
 authors = [{ name = "Kamono Makoto", email = "chengyaye31@gmail.com" }]
 description = "process experimental data"
 readme = "README.md"
@@ -14,7 +14,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+dependencies = ["pydantic", "pandas"]
 
 [project.urls]
-Homepage = "https://github.com/pypa/sampleproject"
-Issues = "https://github.com/pypa/sampleproject/issues"
+Homepage = "https://github.com/nitta-lab-polymer/process-nitta"
+Issues = "https://github.com/nitta-lab-polymer/process-nitta/issues"
