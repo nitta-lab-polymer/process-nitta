@@ -30,3 +30,23 @@ class CSVConfig(BaseModel):
         self.names = ["EndHeader", "日時(μs)", "Voltage"]
         self.dtype = {"Voltage": float}
         return self
+
+    def AGIS(self) -> "CSVConfig":
+        self.header = 19
+        self.usecols = [1, 2]
+        self.names = ["Force", "Stroke"]
+        self.dtype = {"Force": float, "Stroke": float}
+        return self
+
+    def DMA(self) -> "CSVConfig":
+        self.header = 27
+        self.skiprows = [28]
+        self.usecols = ["TEMP", "E'", "E ''", "tanδ"]
+        self.dtype = {"E'": float, "E''": float, "tanδ": float}
+        return self
+
+    def IR(self) -> "CSVConfig":
+        self.header = None
+        self.names = ["Wave number /cm$^{-1}$", "Absorbance /a.u."]
+        self.dtype = {"Wave number /cm$^{-1}$": float, "Absorbance /a.u.": float}
+        return self
