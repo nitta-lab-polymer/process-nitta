@@ -33,7 +33,7 @@ class CSVConfig(BaseModel):
 
     def AGIS(self) -> "CSVConfig":
         self.header = 19
-        self.usecols = [1, 2]
+        self.usecols = ["Force", "Stroke"]
         self.names = ["Force", "Stroke"]
         self.dtype = {"Force": float, "Stroke": float}
         return self
@@ -47,6 +47,7 @@ class CSVConfig(BaseModel):
 
     def IR(self) -> "CSVConfig":
         self.header = None
+        self.usecols = ["Wave number /cm$^{-1}$", "Absorbance /a.u."]
         self.names = ["Wave number /cm$^{-1}$", "Absorbance /a.u."]
         self.dtype = {"Wave number /cm$^{-1}$": float, "Absorbance /a.u.": float}
         return self
