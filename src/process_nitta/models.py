@@ -1,5 +1,3 @@
-from typing import Optional
-
 from pydantic import BaseModel
 
 
@@ -9,6 +7,6 @@ class Base(BaseModel):
 
 
 class Sample(Base):
-    width: Optional[float]
-    length: Optional[float]
-    thickness: Optional[float]
+    width: float
+    length: float
+    thickness: float
