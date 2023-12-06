@@ -1,6 +1,6 @@
 import pandas as pd
 import pytest
-from src.process_nitta.csv_config import CSVConfig
+from process_nitta.csv_config import CSVConfig
 
 
 class TestInstronCSVConfig:
