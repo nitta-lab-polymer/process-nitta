@@ -7,6 +7,6 @@ class Base(BaseModel):
 
 
 class Sample(Base):
-    width: float
-    length: float
-    thickness: float
+    width_mm: float
+    length_mm: float
+    thickness_μm: float
