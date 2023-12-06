@@ -20,10 +20,10 @@ class CSVConfig(BaseModel):
     skipfooter: int = 0
     engine: str = "python"
 
-    def to_dict(self):
+    def to_dict(self) -> Dict:
         return self.model_dump()
 
-    def Instron(self):
+    def Instron(self) -> "CSVConfig":
         self.header = 51
         self.skipfooter = 3
         self.usecols = ["Voltage"]
