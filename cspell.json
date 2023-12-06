@@ -6,10 +6,15 @@
     "language": "en",
     // words - list of words to be always considered correct
     "words": [
+        "dtype",
+        "Instron",
         "Kamono",
         "Makoto",
         "nitta",
-        "pydantic"
+        "pydantic",
+        "skipfooter",
+        "skiprows",
+        "usecols"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.
