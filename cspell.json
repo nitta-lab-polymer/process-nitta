@@ -6,6 +6,7 @@
     "language": "en",
     // words - list of words to be always considered correct
     "words": [
+        "AGIS",
         "dtype",
         "Instron",
         "Kamono",
@@ -14,6 +15,7 @@
         "pydantic",
         "skipfooter",
         "skiprows",
+        "tanδ",
         "usecols"
     ],
     // flagWords - list of words to be always considered incorrect
