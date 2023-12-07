@@ -110,7 +110,7 @@ class CSVConfig(BaseModel):
         }
         return self
 
-    def IR(self) -> "CSVConfig":
+    def IR_NICOLET(self) -> "CSVConfig":
         self.header = None
         self.usecols = [col.Wave_number, col.Absorbance]
         self.names = [col.Wave_number, col.Absorbance]
