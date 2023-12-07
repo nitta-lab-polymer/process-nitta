@@ -8,6 +8,9 @@ from .models import Sample
 
 class DMASample(Sample):
     temp_range: Tuple[float, float] | None = None
+    width_mm: float | None = None
+    thickness_μm: float | None = None
+    length_mm: float | None = None
 
     def model_post_init(
         self, __context: Any
