@@ -119,6 +119,7 @@ class CSVConfig(BaseModel):
         return self
 
     def Raman(self) -> "CSVConfig":
+        self.sep = "\t"
         self.names = [col.RamanShift, "1", col.Intensity]
         self.usecols = [col.RamanShift, col.Intensity]
         self.dtype = {col.RamanShift: float, col.Intensity: float}
