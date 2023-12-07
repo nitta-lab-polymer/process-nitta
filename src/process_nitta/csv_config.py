@@ -27,28 +27,38 @@ class CSVConfig(BaseModel):
     def Instron(self) -> "CSVConfig":
         self.header = 51
         self.skipfooter = 3
-        self.usecols = ["Voltage"]
-        self.names = ["EndHeader", "日時(μs)", "Voltage"]
-        self.dtype = {"Voltage": float}
+        self.usecols = [ColumnStrEnum.Voltage]
+        self.names = ["EndHeader", "日時(μs)", ColumnStrEnum.Voltage]
+        self.dtype = {ColumnStrEnum.Voltage: float}
         return self
 
     def AGIS(self) -> "CSVConfig":
         self.header = 19
-        self.usecols = ["Force", "Stroke"]
-        self.names = ["Force", "Stroke"]
-        self.dtype = {"Force": float, "Stroke": float}
+        self.usecols = [ColumnStrEnum.Force, ColumnStrEnum.Stroke]
+        self.names = [ColumnStrEnum.Force, ColumnStrEnum.Stroke]
+        self.dtype = {ColumnStrEnum.Force: float, ColumnStrEnum.Stroke: float}
         return self
 
     def DMA(self) -> "CSVConfig":
         self.header = 27
         self.skiprows = [28]
         self.usecols = ["TEMP", "E'", "E ''", "tanδ"]
-        self.dtype = {"E'": float, "E''": float, "tanδ": float}
+        self.dtype = {"TEMP": float, "E'": float, "E ''": float, "tanδ": float}
         return self
 
     def IR(self) -> "CSVConfig":
         self.header = None
-        self.usecols = ["Wave number /cm$^{-1}$", "Absorbance /a.u."]
-        self.names = ["Wave number /cm$^{-1}$", "Absorbance /a.u."]
-        self.dtype = {"Wave number /cm$^{-1}$": float, "Absorbance /a.u.": float}
+        self.usecols = [ColumnStrEnum.Wave_number, ColumnStrEnum.Absorbance]
+        self.names = [ColumnStrEnum.Wave_number, ColumnStrEnum.Absorbance]
+        self.dtype = {ColumnStrEnum.Wave_number: float, ColumnStrEnum.Absorbance: float}
         return self
+
+
+class ColumnStrEnum(StrEnum):
+    Voltage = "Voltage"
+    Force = "Force /N"
+    Stroke = "Stroke /mm"
+    Wave_number = "Wave number /cm$^{-1}$"
+    Absorbance = "Absorbance /a.u."
+    Strain = "Strain $\epsilon$ /-"  # type: ignore
+    Stress = "Stress $\sigma$ /MPa"  # type: ignore
