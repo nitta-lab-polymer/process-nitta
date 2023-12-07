@@ -11,14 +11,17 @@ class InstronSample(Sample):
     load_cell_max_N: int = 100
     load_cell_calibration_coef: float = 1
     max_Voltage: float = 10
+    mean_range: int = 100
 
-    def trim_df(self, df: pd.DataFrame, mean_range: int = 100) -> pd.DataFrame:
+    def trim_df(self, df: pd.DataFrame) -> pd.DataFrame:
         df = df.copy()
-        roll = pd.DataFrame(df[col.Voltage].rolling(window=mean_range).mean().diff())
+        roll = pd.DataFrame(
+            df[col.Voltage].rolling(window=self.mean_range).mean().diff()
+        )
 
         start = (
-            int(roll[col.Voltage][mean_range : mean_range * 2].idxmax())
-            - mean_range
+            int(roll[col.Voltage][self.mean_range : self.mean_range * 2].idxmax())
+            - self.mean_range
             + 1
         )  # 傾きが最大のところを探す
         end = int(roll[col.Voltage].idxmin()) + 10

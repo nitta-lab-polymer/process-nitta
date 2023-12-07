@@ -12,6 +12,7 @@ class AGISSample(Sample):
     width_mm: float = 0
     length_mm: float = 0
     thickness_μm: float = 0
+    mean_range: int = 100
 
     def model_post_init(
         self, __context: Any
@@ -36,12 +37,14 @@ class AGISSample(Sample):
         self.thickness_μm = thickness_mm * 1000
         return
 
-    def trim_df(self, df: pd.DataFrame, mean_range=10) -> pd.DataFrame:
+    def trim_df(self, df: pd.DataFrame) -> pd.DataFrame:
         df = df.copy()
-        roll = pd.DataFrame(df[col.Force].rolling(window=mean_range).mean().diff())
+        roll = pd.DataFrame(df[col.Force].rolling(window=self.mean_range).mean().diff())
 
         start = (
-            int(roll[col.Force][mean_range : mean_range * 2].idxmax()) - mean_range + 1
+            int(roll[col.Force][self.mean_range : self.mean_range * 2].idxmax())
+            - self.mean_range
+            + 1
         )  # 傾きが最大のところを探す
 
         result = df[start:].reset_index(drop=True)
