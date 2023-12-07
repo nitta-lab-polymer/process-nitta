@@ -6,17 +6,17 @@ from .models import Sample
 
 class InstronSample(Sample):
     speed_mm_per_min: float
-    freq_Hz: float
+    freq_Hz: float = 0.05
     load_cell_max_N: int = 100
     load_range: int = 1
     max_Voltage: float = 10
 
-    def trim_instron_df(self, df: pd.DataFrame, meat_range: int = 100) -> pd.Series:
+    def trim_instron_sr(self, df: pd.DataFrame, mean_range: int = 100) -> pd.Series:
         df = df.copy()
-        roll = pd.DataFrame(df["Voltage"].rolling(window=meat_range).mean().diff())
+        roll = pd.DataFrame(df["Voltage"].rolling(window=mean_range).mean().diff())
 
         start = (
-            int(roll["Voltage"][0 : meat_range * 10].idxmax()) - meat_range + 1
+            int(roll["Voltage"][0 : mean_range * 10].idxmax()) - mean_range + 1
         )  # 傾きが最大のところを探す
         end = int(roll["Voltage"].idxmin()) + 10
 
@@ -42,4 +42,4 @@ class InstronSample(Sample):
 
     def get_stress_strain_df(self) -> pd.DataFrame:
         df = pd.read_csv(self.file_path, **CSVConfig().Instron().to_dict())
-        return self.calc_stress_strain_df(self.trim_instron_df(df))
+        return self.calc_stress_strain_df(self.trim_instron_sr(df))
