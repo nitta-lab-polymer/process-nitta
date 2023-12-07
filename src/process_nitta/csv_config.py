@@ -19,6 +19,7 @@ class CSVConfig(BaseModel):
     skiprows: Optional[List[int]] = None  # 冒頭の行を読み飛ばす動作は許可しない
     skipfooter: int = 0
     engine: str = "python"
+    nrows: Optional[int] = None
 
     def to_dict(self) -> Dict:
         return self.model_dump()
