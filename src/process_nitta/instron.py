@@ -11,7 +11,7 @@ class InstronSample(Sample):
     load_cell_calibration_coef: float = 1
     max_Voltage: float = 10
 
-    def trim_instron_df(self, df: pd.DataFrame, mean_range: int = 100) -> pd.DataFrame:
+    def trim_df(self, df: pd.DataFrame, mean_range: int = 100) -> pd.DataFrame:
         df = df.copy()
         roll = pd.DataFrame(df["Voltage"].rolling(window=mean_range).mean().diff())
 
@@ -46,4 +46,4 @@ class InstronSample(Sample):
 
     def get_stress_strain_df(self) -> pd.DataFrame:
         df = pd.read_csv(self.file_path, **CSVConfig().Instron().to_dict())
-        return self.calc_stress_strain_df(self.trim_instron_df(df))
+        return self.calc_stress_strain_df(self.trim_df(df))
