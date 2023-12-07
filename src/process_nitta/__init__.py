@@ -7,3 +7,4 @@ from .instron import InstronSample as InstronSample
 from .ir_nicolet import IRNICOLETSample as IRNICOLETSample
 from .models import Base as Base
 from .models import Sample as Sample
+from .raman import RamanSample as RamanSample

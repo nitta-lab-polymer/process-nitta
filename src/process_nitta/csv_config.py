@@ -21,6 +21,8 @@ class ColumnStrEnum(StrEnum):
     E1 = "$\it E'$ /Pa"  # type: ignore
     E2 = "$\it E''$ /Pa"  # type: ignore
     TanDelta = "tan $\delta$"  # type: ignore
+    RamanShift = "Raman Shift /cm$^{-1}$"
+    Intensity = "Intensity /a.u."
 
 
 col = ColumnStrEnum
@@ -30,8 +32,8 @@ class CSVConfig(BaseModel):
     encoding: encodingStr = encodingStr.shift_jis
     sep: str = ","
     header: Optional[int] = None
-    usecols: Union[List[int], List[str], None] = None
     names: Optional[List[str]] = None
+    usecols: Union[List[int], List[str], None] = None
     dtype: Optional[Dict[str, type]] = None
     skiprows: Optional[List[int]] = None  # 冒頭の行を読み飛ばす動作は許可しない
     skipfooter: int = 0
@@ -44,27 +46,21 @@ class CSVConfig(BaseModel):
     def Instron(self) -> "CSVConfig":
         self.header = 51
         self.skipfooter = 3
-        self.usecols = [col.Voltage]
         self.names = ["EndHeader", "日時(μs)", col.Voltage]
+        self.usecols = [col.Voltage]
         self.dtype = {col.Voltage: float}
         return self
 
     def AGIS(self) -> "CSVConfig":
         self.header = 19
-        self.usecols = [col.Force, col.Stroke]
         self.names = ["sec", col.Force, col.Stroke]
+        self.usecols = [col.Force, col.Stroke]
         self.dtype = {col.Force: float, col.Stroke: float}
         return self
 
     def DMA(self) -> "CSVConfig":
         self.header = 27
         self.skiprows = [28]
-        self.usecols = [
-            col.Temperature,
-            col.E1,
-            col.E2,
-            col.TanDelta,
-        ]
         self.names = [
             "TOTAL",
             "BL",
@@ -102,6 +98,12 @@ class CSVConfig(BaseModel):
             " TempC",
             "*",
         ]
+        self.usecols = [
+            col.Temperature,
+            col.E1,
+            col.E2,
+            col.TanDelta,
+        ]
         self.dtype = {
             col.Temperature: float,
             col.E1: float,
@@ -111,8 +113,14 @@ class CSVConfig(BaseModel):
         return self
 
     def IR_NICOLET(self) -> "CSVConfig":
-        self.header = None
-        self.usecols = [col.Wave_number, col.Absorbance]
         self.names = [col.Wave_number, col.Absorbance]
+        self.usecols = [col.Wave_number, col.Absorbance]
         self.dtype = {col.Wave_number: float, col.Absorbance: float}
+        return self
+
+    def Raman(self) -> "CSVConfig":
+        self.sep = "\t"
+        self.names = [col.RamanShift, "1", col.Intensity]
+        self.usecols = [col.RamanShift, col.Intensity]
+        self.dtype = {col.RamanShift: float, col.Intensity: float}
         return self
