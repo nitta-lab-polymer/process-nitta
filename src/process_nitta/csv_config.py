@@ -1,5 +1,5 @@
 from enum import StrEnum
-from typing import Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel
 
@@ -40,7 +40,7 @@ class CSVConfig(BaseModel):
     engine: str = "python"
     nrows: Optional[int] = None
 
-    def to_dict(self) -> Dict:
+    def to_dict(self) -> Dict[str, Any]:
         return self.model_dump()
 
     def Instron(self) -> "CSVConfig":

@@ -1,16 +1,13 @@
-from typing import Any, Tuple
+from typing import Any, Optional, Tuple
 
 import pandas as pd
 
 from .csv_config import CSVConfig
-from .models import Sample
+from .models import Base
 
 
-class DMASample(Sample):
-    temp_range: Tuple[float, float] | None = None
-    width_mm: float | None = None
-    thickness_μm: float | None = None
-    length_mm: float | None = None
+class DMASample(Base):
+    temp_range: Optional[Tuple[float, float]] = None
 
     def model_post_init(
         self, __context: Any
@@ -21,7 +18,7 @@ class DMASample(Sample):
         return
 
     def set_temp_range(self) -> None:
-        df = pd.read_csv(
+        df: pd.DataFrame = pd.read_csv(
             self.file_path,
             **CSVConfig(
                 skiprows=[n for n in range(9)],
@@ -34,7 +31,7 @@ class DMASample(Sample):
         return
 
     def get_result_df(self) -> pd.DataFrame:
-        df = pd.read_csv(
+        df: pd.DataFrame = pd.read_csv(
             self.file_path,
             **CSVConfig().DMA().to_dict(),
         )

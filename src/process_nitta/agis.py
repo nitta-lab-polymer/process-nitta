@@ -23,7 +23,7 @@ class AGISSample(Sample):
         return
 
     def set_sample_size(self) -> None:
-        size_df = pd.read_csv(
+        size_df: pd.DataFrame = pd.read_csv(
             self.file_path,
             **CSVConfig(
                 skiprows=[n for n in range(10)],
@@ -64,5 +64,5 @@ class AGISSample(Sample):
         )
 
     def get_stress_strain_df(self) -> pd.DataFrame:
-        df = pd.read_csv(self.file_path, **CSVConfig().AGIS().to_dict())
+        df: pd.DataFrame = pd.read_csv(self.file_path, **CSVConfig().AGIS().to_dict())
         return self.calc_stress_strain_df(self.trim_df(df))

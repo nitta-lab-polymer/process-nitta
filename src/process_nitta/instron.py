@@ -51,5 +51,7 @@ class InstronSample(Sample):
         )
 
     def get_stress_strain_df(self) -> pd.DataFrame:
-        df = pd.read_csv(self.file_path, **CSVConfig().Instron().to_dict())
+        df: pd.DataFrame = pd.read_csv(
+            self.file_path, **CSVConfig().Instron().to_dict()
+        )
         return self.calc_stress_strain_df(self.trim_df(df))

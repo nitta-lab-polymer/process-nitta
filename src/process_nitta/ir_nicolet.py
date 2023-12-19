@@ -6,7 +6,7 @@ from .models import Base
 
 class IRNICOLETSample(Base):
     def get_result_df(self) -> pd.DataFrame:
-        df = pd.read_csv(
+        df: pd.DataFrame = pd.read_csv(
             self.file_path,
             **CSVConfig().IR_NICOLET().to_dict(),
         )
