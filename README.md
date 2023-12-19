@@ -25,3 +25,5 @@ sample = InstronSample(
 
 sample.get_stress_strain_df()
 ```
+
+[example](https://github.com/nitta-lab-polymer/process-nitta/tree/main/example)に実行例を置いています。
