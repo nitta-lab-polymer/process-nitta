@@ -3,12 +3,12 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-version = "0.0.13"
+version = "0.0.14"
 name = "process-nitta"
 authors = [{ name = "Kamono Makoto", email = "chengyaye31@gmail.com" }]
 description = "process experimental data"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
