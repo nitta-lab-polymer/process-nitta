@@ -13,7 +13,7 @@ pip install process-nitta
 実行例
 
 ```python
-from process_nitta.instron import InstronSample
+from process_nitta import InstronSample
 
 sample = InstronSample(
     file_path="../test/csv/instron.csv",
