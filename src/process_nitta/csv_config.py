@@ -6,11 +6,17 @@ from pydantic import BaseModel
 
 
 class encodingStr(str, Enum):
+    def __str__(self) -> str:
+        return self.value
+
     shift_jis = "shift-jis"
     utf_8 = "utf-8"
 
 
 class ColumnStrEnum(str, Enum):
+    def __str__(self) -> str:
+        return self.value
+
     Voltage = "Voltage"
     Force = "Force /N"
     Stroke = "Stroke /mm"
