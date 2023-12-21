@@ -1,15 +1,15 @@
-from enum import StrEnum
+from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel
 
 
-class encodingStr(StrEnum):
+class encodingStr(str, Enum):
     shift_jis = "shift-jis"
     utf_8 = "utf-8"
 
 
-class ColumnStrEnum(StrEnum):
+class ColumnStrEnum(str, Enum):
     Voltage = "Voltage"
     Force = "Force /N"
     Stroke = "Stroke /mm"
