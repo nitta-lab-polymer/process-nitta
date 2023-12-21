@@ -1,3 +1,4 @@
+import sys
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
@@ -41,6 +42,8 @@ class CSVConfig(BaseModel):
     nrows: Optional[int] = None
 
     def to_dict(self) -> Dict[str, Any]:
+        if sys.version < "3.11":
+            return self.dict()
         return self.model_dump()
 
     def Instron(self) -> "CSVConfig":
