@@ -42,7 +42,7 @@ class CSVConfig(BaseModel):
     nrows: Optional[int] = None
 
     def to_dict(self) -> Dict[str, Any]:
-        if sys.version < "3.11":
+        if sys.version_info < (3, 11):
             return self.dict()
         return self.model_dump()
 
