@@ -61,7 +61,7 @@ class CSVConfig(BaseModel):
 
     def AGIS(self) -> "CSVConfig":
         self.header = 19
-        self.names = ["sec", col.Force, col.Stroke]
+        self.names = ["sec", col.Force, col.Stroke, "empty"]
         self.usecols = [col.Force, col.Stroke]
         self.dtype = {col.Force: float, col.Stroke: float}
         return self
