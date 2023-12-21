@@ -68,22 +68,21 @@ class CSVConfig(BaseModel):
         return self
 
     def DMA(self) -> "CSVConfig":
-        self.header = 27
-        self.skiprows = [28]
+        self.header = 28
         self.names = [
             "TOTAL",
             "BL",
             "No",
             col.Temperature,
             "FREQ.",
-            "ω",
+            "OMEGA",
             col.E1,
             col.E2,
             "E*",
             col.TanDelta,
-            "η'",
-            "η''",
-            "η * ",
+            "ETA'",
+            "ETA''",
+            "ETA * ",
             "Time",
             "DISP",
             "DISP.1",
@@ -91,7 +90,7 @@ class CSVConfig(BaseModel):
             "LOAD",
             "C.D",
             "PHASE",
-            "応力",
+            "STRESS",
             "S.STRESS",
             "N.STRESS",
             "REVL",
