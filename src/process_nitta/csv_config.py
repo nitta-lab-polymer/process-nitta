@@ -51,10 +51,6 @@ class CSVConfig(BaseModel):
     nrows: Optional[int] = None
     engine: Optional[engineStr] = None
 
-    def model_post_init(self, __context: object) -> None:
-        if sys.version_info >= (3, 11):
-            self.engine = engineStr.PYTHON
-
     def to_dict(self) -> Dict[str, Any]:
         return self.model_dump()
 
@@ -64,6 +60,7 @@ class CSVConfig(BaseModel):
         self.names = ["EndHeader", "日時(μs)", col.VOLTAGE]
         self.usecols = [col.VOLTAGE]
         self.dtype = {col.VOLTAGE: float}
+        self.engine = engineStr.PYTHON
         return self
 
     def AGIS(self) -> "CSVConfig":
