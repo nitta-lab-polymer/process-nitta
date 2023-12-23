@@ -45,6 +45,7 @@ class CSVConfig(BaseModel):
     skiprows: Optional[List[int]] = None  # 冒頭の行を読み飛ばす動作は許可しない
     skipfooter: int = 0
     nrows: Optional[int] = None
+    engine: str = "python"
 
     def to_dict(self) -> Dict[str, Any]:
         if sys.version_info < (3, 11):
