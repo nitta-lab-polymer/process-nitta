@@ -1,4 +1,4 @@
-name: Test
+name: Check Release
 
 on:
   pull_request:
