@@ -5,6 +5,10 @@ from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel
 
 
+class engineStr(str, Enum):
+    PYTHON = "python"
+
+
 class encodingStr(str, Enum):
     def __str__(self) -> str:
         return self.value
@@ -45,7 +49,7 @@ class CSVConfig(BaseModel):
     skiprows: Optional[List[int]] = None  # 冒頭の行を読み飛ばす動作は許可しない
     skipfooter: int = 0
     nrows: Optional[int] = None
-    engine: str = "python"
+    engine: engineStr = engineStr.PYTHON
 
     def to_dict(self) -> Dict[str, Any]:
         if sys.version_info < (3, 11):
