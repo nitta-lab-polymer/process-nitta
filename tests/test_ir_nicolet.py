@@ -11,5 +11,5 @@ def test_ir():
         name="sample",
     )
     result_df = sample.get_result_df()
-    answer_df = pd.read_csv(f"{workspace_dir}/answer_data/ir.csv", index_col=0)
+    answer_df = pd.read_csv(f"{workspace_dir}/tests/answer_data/ir.csv", index_col=0)
     pd.testing.assert_frame_equal(result_df, answer_df)
