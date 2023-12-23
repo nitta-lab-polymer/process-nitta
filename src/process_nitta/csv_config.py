@@ -56,8 +56,6 @@ class CSVConfig(BaseModel):
             self.engine = engineStr.PYTHON
 
     def to_dict(self) -> Dict[str, Any]:
-        if sys.version_info < (3, 11):
-            return self.dict()
         return self.model_dump()
 
     def Instron(self) -> "CSVConfig":
