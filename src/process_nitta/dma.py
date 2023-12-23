@@ -1,6 +1,5 @@
 from typing import Any, Optional, Tuple
 
-import numpy as np
 import pandas as pd
 
 from .csv_config import CSVConfig
