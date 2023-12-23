@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  Test:
 
     runs-on: ubuntu-latest
     strategy:
