@@ -7,7 +7,7 @@
 インストール
 
 ```bash
-pip install process-nitta
+pip install -U process-nitta
 ```
 
 実行例
