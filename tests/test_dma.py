@@ -2,7 +2,7 @@ import pandas as pd
 from process_nitta import DMASample
 
 
-def test_agis():
+def test_dma():
     sample = DMASample(
         file_path="./process-nitta/sample_data/dma.csv",
         name="sample",

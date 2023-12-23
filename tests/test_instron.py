@@ -2,7 +2,7 @@ import pandas as pd
 from process_nitta import InstronSample
 
 
-def test_agis():
+def test_instron():
     sample = InstronSample(
         file_path="./process-nitta/sample_data/instron.csv",
         name="sample",
