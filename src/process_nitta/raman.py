@@ -11,9 +11,9 @@ class RamanSample(Base):
         self, df: pd.DataFrame, lam: float = 1e7, p: float = 0.02
     ) -> pd.DataFrame:
         df = df.copy()
-        baseline_fitter = Baseline(df[col.RamanShift].values, check_finite=False)
-        bkg = baseline_fitter.asls(df[col.Intensity], lam=lam, p=p)[0]
-        df[col.Intensity] = df[col.Intensity] - bkg
+        baseline_fitter = Baseline(df[col.RAMAN_SHIFT].values, check_finite=False)
+        bkg = baseline_fitter.asls(df[col.INTENSITY], lam=lam, p=p)[0]
+        df[col.INTENSITY] = df[col.INTENSITY] - bkg
         return df
 
     def get_result_df(self, lam: float = 1e7, p: float = 0.02) -> pd.DataFrame:

@@ -9,34 +9,34 @@ class encodingStr(str, Enum):
     def __str__(self) -> str:
         return self.value
 
-    shift_jis = "shift-jis"
-    utf_8 = "utf-8"
+    Shift_JIS = "shift-jis"
+    UTF_8 = "utf-8"
 
 
 class ColumnStrEnum(str, Enum):
     def __str__(self) -> str:
         return self.value
 
-    Voltage = "Voltage"
-    Force = "Force /N"
-    Stroke = "Stroke /mm"
-    Wave_number = "Wave number /cm$^{-1}$"
-    Absorbance = "Absorbance /a.u."
-    Strain = "Strain $\epsilon$ /-"  # type: ignore
-    Stress = "Stress $\sigma$ /MPa"  # type: ignore
-    Temperature = "Temperature /℃"
+    VOLTAGE = "Voltage"
+    FORCE = "Force /N"
+    STROKE = "Stroke /mm"
+    WAVE_NUMBER = "Wave number /cm$^{-1}$"
+    ABSORBANCE = "Absorbance /a.u."
+    STRAIN = "Strain $\epsilon$ /-"  # type: ignore
+    STRESS = "Stress $\sigma$ /MPa"  # type: ignore
+    TEMPERATURE = "Temperature /℃"
     E1 = "$\it E'$ /Pa"  # type: ignore
     E2 = "$\it E''$ /Pa"  # type: ignore
-    TanDelta = "tan $\delta$"  # type: ignore
-    RamanShift = "Raman Shift /cm$^{-1}$"
-    Intensity = "Intensity /a.u."
+    TAN_DELTA = "tan $\delta$"  # type: ignore
+    RAMAN_SHIFT = "Raman Shift /cm$^{-1}$"
+    INTENSITY = "Intensity /a.u."
 
 
 col = ColumnStrEnum
 
 
 class CSVConfig(BaseModel):
-    encoding: encodingStr = encodingStr.shift_jis
+    encoding: encodingStr = encodingStr.Shift_JIS
     sep: str = ","
     header: Optional[int] = None
     names: Optional[List[str]] = None
@@ -54,16 +54,16 @@ class CSVConfig(BaseModel):
     def Instron(self) -> "CSVConfig":
         self.header = 51
         self.skipfooter = 3
-        self.names = ["EndHeader", "日時(μs)", col.Voltage]
-        self.usecols = [col.Voltage]
-        self.dtype = {col.Voltage: float}
+        self.names = ["EndHeader", "日時(μs)", col.VOLTAGE]
+        self.usecols = [col.VOLTAGE]
+        self.dtype = {col.VOLTAGE: float}
         return self
 
     def AGIS(self) -> "CSVConfig":
         self.header = 19
-        self.names = ["sec", col.Force, col.Stroke, "empty"]
-        self.usecols = [col.Force, col.Stroke]
-        self.dtype = {col.Force: float, col.Stroke: float}
+        self.names = ["sec", col.FORCE, col.STROKE, "empty"]
+        self.usecols = [col.FORCE, col.STROKE]
+        self.dtype = {col.FORCE: float, col.STROKE: float}
         return self
 
     def DMA(self) -> "CSVConfig":
@@ -72,13 +72,13 @@ class CSVConfig(BaseModel):
             "TOTAL",
             "BL",
             "No",
-            col.Temperature,
+            col.TEMPERATURE,
             "FREQ.",
             "OMEGA",
             col.E1,
             col.E2,
             "E*",
-            col.TanDelta,
+            col.TAN_DELTA,
             "ETA'",
             "ETA''",
             "ETA * ",
@@ -106,28 +106,28 @@ class CSVConfig(BaseModel):
             "*",
         ]
         self.usecols = [
-            col.Temperature,
+            col.TEMPERATURE,
             col.E1,
             col.E2,
-            col.TanDelta,
+            col.TAN_DELTA,
         ]
         self.dtype = {
-            col.Temperature: float,
+            col.TEMPERATURE: float,
             col.E1: float,
             col.E2: float,
-            col.TanDelta: float,
+            col.TAN_DELTA: float,
         }
         return self
 
     def IR_NICOLET(self) -> "CSVConfig":
-        self.names = [col.Wave_number, col.Absorbance]
-        self.usecols = [col.Wave_number, col.Absorbance]
-        self.dtype = {col.Wave_number: float, col.Absorbance: float}
+        self.names = [col.WAVE_NUMBER, col.ABSORBANCE]
+        self.usecols = [col.WAVE_NUMBER, col.ABSORBANCE]
+        self.dtype = {col.WAVE_NUMBER: float, col.ABSORBANCE: float}
         return self
 
     def Raman(self) -> "CSVConfig":
         self.sep = "\t"
-        self.names = [col.RamanShift, "1", col.Intensity]
-        self.usecols = [col.RamanShift, col.Intensity]
-        self.dtype = {col.RamanShift: float, col.Intensity: float}
+        self.names = [col.RAMAN_SHIFT, "1", col.INTENSITY]
+        self.usecols = [col.RAMAN_SHIFT, col.INTENSITY]
+        self.dtype = {col.RAMAN_SHIFT: float, col.INTENSITY: float}
         return self

@@ -39,28 +39,28 @@ class AGISSample(Sample):
 
     def trim_df(self, df: pd.DataFrame) -> pd.DataFrame:
         df = df.copy()
-        roll = pd.DataFrame(df[col.Force].rolling(window=self.mean_range).mean().diff())
+        roll = pd.DataFrame(df[col.FORCE].rolling(window=self.mean_range).mean().diff())
 
         start = (
-            int(roll[col.Force][self.mean_range : self.mean_range * 2].idxmax())
+            int(roll[col.FORCE][self.mean_range : self.mean_range * 2].idxmax())
             - self.mean_range
             + 1
         )  # 傾きが最大のところを探す
 
         result = df[start:].reset_index(drop=True)
-        result[col.Stroke] = result[col.Stroke] - result[col.Stroke][0]
-        result[col.Force] = result[col.Force] - result[col.Force][0]
+        result[col.STROKE] = result[col.STROKE] - result[col.STROKE][0]
+        result[col.FORCE] = result[col.FORCE] - result[col.FORCE][0]
         return result
 
     def calc_stress_strain_df(self, df: pd.DataFrame) -> pd.DataFrame:
         df = df.copy()
         area_mm2 = self.width_mm * self.thickness_μm / 1000
 
-        stress_Mpa = self.calibration_coefficient * df[col.Force] / area_mm2
-        strain = df[col.Stroke] / self.length_mm
+        stress_Mpa = self.calibration_coefficient * df[col.FORCE] / area_mm2
+        strain = df[col.STROKE] / self.length_mm
 
         return pd.DataFrame(
-            {col.Strain: strain, col.Stress: stress_Mpa},
+            {col.STRAIN: strain, col.STRESS: stress_Mpa},
         )
 
     def get_stress_strain_df(self) -> pd.DataFrame:

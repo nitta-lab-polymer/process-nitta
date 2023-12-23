@@ -16,19 +16,19 @@ class InstronSample(Sample):
     def trim_df(self, df: pd.DataFrame) -> pd.DataFrame:
         df = df.copy()
         roll = pd.DataFrame(
-            df[col.Voltage].rolling(window=self.mean_range).mean().diff()
+            df[col.VOLTAGE].rolling(window=self.mean_range).mean().diff()
         )
 
         start = (
-            int(roll[col.Voltage][self.mean_range : self.mean_range * 2].idxmax())
+            int(roll[col.VOLTAGE][self.mean_range : self.mean_range * 2].idxmax())
             - self.mean_range
             + 1
         )  # 傾きが最大のところを探す
-        end = int(roll[col.Voltage].idxmin()) + 10
+        end = int(roll[col.VOLTAGE].idxmin()) + 10
 
         result = df[start:end].reset_index(drop=True)
-        result[col.Voltage] = (
-            result[col.Voltage] - result[col.Voltage][0]
+        result[col.VOLTAGE] = (
+            result[col.VOLTAGE] - result[col.VOLTAGE][0]
         )  # 初期値を0にする
 
         return result
@@ -42,12 +42,12 @@ class InstronSample(Sample):
             self.load_cell_max_N
             / (self.load_cell_calibration_coef * self.max_Voltage)
             / area_mm2
-            * df[col.Voltage]
+            * df[col.VOLTAGE]
         )
         strain = speed_mm_per_sec * self.freq_Hz * df.index / self.length_mm
 
         return pd.DataFrame(
-            {col.Strain: strain, col.Stress: stress_Mpa},
+            {col.STRAIN: strain, col.STRESS: stress_Mpa},
         )
 
     def get_stress_strain_df(self) -> pd.DataFrame:
