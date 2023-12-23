@@ -9,9 +9,8 @@ on:
 jobs:
   check-release:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-      - name: Check Diff
-        run: |
-          git diff main --name-only ${{ github.event.before }} ${{ github.event.after }} | grep pyproject.toml
+      - run: git fetch origin ${{ github.base_ref }} --depth=1
+      - id: diff
+        run: git diff --name-only origin/${{ github.base_ref }} HEAD --relative . | grep pyproject.toml
