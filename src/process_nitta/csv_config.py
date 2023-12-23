@@ -1,8 +1,11 @@
-import sys
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel
+
+
+class engineStr(str, Enum):
+    PYTHON = "python"
 
 
 class encodingStr(str, Enum):
@@ -45,10 +48,9 @@ class CSVConfig(BaseModel):
     skiprows: Optional[List[int]] = None  # 冒頭の行を読み飛ばす動作は許可しない
     skipfooter: int = 0
     nrows: Optional[int] = None
+    engine: Optional[engineStr] = None
 
     def to_dict(self) -> Dict[str, Any]:
-        if sys.version_info < (3, 11):
-            return self.dict()
         return self.model_dump()
 
     def Instron(self) -> "CSVConfig":
@@ -57,6 +59,7 @@ class CSVConfig(BaseModel):
         self.names = ["EndHeader", "日時(μs)", col.VOLTAGE]
         self.usecols = [col.VOLTAGE]
         self.dtype = {col.VOLTAGE: float}
+        self.engine = engineStr.PYTHON
         return self
 
     def AGIS(self) -> "CSVConfig":

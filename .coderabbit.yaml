@@ -4,5 +4,8 @@ reviews:
     enabled: true
     ignore_title_keywords:
       - "WIP"
+  path_filters:
+    - "!**/sample_data/**"
+    - "!**/answer_data/**"
 chat:
   auto_reply: true
