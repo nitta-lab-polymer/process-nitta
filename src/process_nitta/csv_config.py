@@ -9,17 +9,11 @@ class engineStr(str, Enum):
 
 
 class encodingStr(str, Enum):
-    def __str__(self) -> str:
-        return self.value
-
     Shift_JIS = "shift-jis"
     UTF_8 = "utf-8"
 
 
 class ColumnStrEnum(str, Enum):
-    def __str__(self) -> str:
-        return self.value
-
     VOLTAGE = "Voltage"
     FORCE = "Force /N"
     STROKE = "Stroke /mm"
