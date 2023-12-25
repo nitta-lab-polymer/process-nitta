@@ -1,9 +1,8 @@
 from typing import Any, Optional, Tuple
 
 import pandas as pd
-
-from .csv_config import CSVConfig
-from .models import Base
+from csv_config import CSVConfig
+from models import Base
 
 
 class DMASample(Base):

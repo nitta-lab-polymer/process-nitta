@@ -1,8 +1,7 @@
 import pandas as pd
-
-from .csv_config import ColumnStrEnum as col
-from .csv_config import CSVConfig
-from .models import Sample
+from csv_config import ColumnStrEnum as col
+from csv_config import CSVConfig
+from models import Sample
 
 
 class InstronSample(Sample):

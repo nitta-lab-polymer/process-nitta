@@ -1,7 +1,6 @@
 import pandas as pd
-
-from .csv_config import CSVConfig
-from .models import Base
+from csv_config import CSVConfig
+from models import Base
 
 
 class IRNICOLETSample(Base):
