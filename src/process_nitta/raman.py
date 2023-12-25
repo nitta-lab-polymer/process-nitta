@@ -16,9 +16,14 @@ class RamanSample(Base):
         df[col.INTENSITY] = df[col.INTENSITY] - bkg
         return df
 
-    def get_result_df(self, lam: float = 1e7, p: float = 0.02) -> pd.DataFrame:
+    def get_raw_df(self, config: CSVConfig = CSVConfig().Raman()) -> pd.DataFrame:
+        return pd.read_csv(self.file_path, **config.to_dict())
+
+    def get_result_df(
+        self, lam: float = 1e7, p: float = 0.02, config: CSVConfig = CSVConfig().Raman()
+    ) -> pd.DataFrame:
         return self.baseline_correction(
-            pd.read_csv(self.file_path, **CSVConfig().Raman().to_dict()),
+            self.get_raw_df(config=config),
             lam=lam,
             p=p,
         )
