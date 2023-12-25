@@ -1,6 +1,7 @@
 import pandas as pd
-from csv_config import CSVConfig
-from models import Base
+
+from process_nitta.csv_config import CSVConfig
+from process_nitta.models import Base
 
 
 class IRNICOLETSample(Base):

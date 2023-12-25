@@ -1,8 +1,9 @@
 from typing import Any, Optional, Tuple
 
 import pandas as pd
-from csv_config import CSVConfig
-from models import Base
+
+from process_nitta.csv_config import CSVConfig
+from process_nitta.models import Base
 
 
 class DMASample(Base):

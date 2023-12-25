@@ -1,8 +1,9 @@
 import pandas as pd
-from csv_config import ColumnStrEnum as col
-from csv_config import CSVConfig
-from models import Base
 from pybaselines import Baseline
+
+from process_nitta.csv_config import ColumnStrEnum as col
+from process_nitta.csv_config import CSVConfig
+from process_nitta.models import Base
 
 
 class RamanSample(Base):
