@@ -27,6 +27,8 @@ class ColumnStrEnum(str, Enum):
     TAN_DELTA = "tan $\delta$"  # type: ignore
     RAMAN_SHIFT = "Raman Shift /cm$^{-1}$"
     INTENSITY = "Intensity /a.u."
+    GAUSSIAN_STRAIN = "Gaussian strain $\it\lambda^2 -1 /\lambda$ /-"  # type: ignore
+    TRUE_STRESS = "True stress $\sigma \lambda$ /-"  # type: ignore
 
 
 col = ColumnStrEnum
