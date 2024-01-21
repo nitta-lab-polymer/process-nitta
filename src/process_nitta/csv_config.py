@@ -29,6 +29,7 @@ class ColumnStrEnum(str, Enum):
     INTENSITY = "Intensity /a.u."
     GAUSSIAN_STRAIN = "Gaussian strain $\it\lambda^2 -1 /\lambda$ /-"  # type: ignore
     TRUE_STRESS = "True stress $\sigma \lambda$ /-"  # type: ignore
+    DRAW_RATIO = "Draw ratio $\lambda$ /-"  # type: ignore
 
 
 col = ColumnStrEnum
