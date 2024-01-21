@@ -13,7 +13,3 @@ def test_agis():
     result_df = sample.get_result_df()
     answer_df = pd.read_csv(f"{workspace_dir}/tests/answer_data/agis.csv", index_col=0)
     pd.testing.assert_frame_equal(result_df, answer_df)
-
-
-if __name__ == "__main__":
-    test_agis()
