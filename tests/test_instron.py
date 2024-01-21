@@ -14,7 +14,7 @@ def test_instron():
         thickness_μm=2000,
         speed_mm_per_min=500,
     )
-    result_df = sample.get_stress_strain_df()
+    result_df = sample.get_result_df()
     answer_df = pd.read_csv(
         f"{workspace_dir}/tests/answer_data/instron.csv", index_col=0
     )
