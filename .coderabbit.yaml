@@ -7,5 +7,6 @@ reviews:
   path_filters:
     - "!**/sample_data/**"
     - "!**/answer_data/**"
+    - "!**/*.toml"
 chat:
   auto_reply: true
