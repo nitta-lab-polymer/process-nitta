@@ -50,14 +50,6 @@ class InstronSample(Sample):
             {col.STRAIN: strain, col.STRESS: stress_Mpa},
         )
 
-    def calc_gaussian_strain(self, lambda_sr: pd.Series) -> pd.Series:
-        draw_ratio = lambda_sr
-        return pd.Series(
-            {
-                col.GAUSSIAN_STRAIN: draw_ratio**2 - 1 / draw_ratio,
-            },
-        )
-
     def get_result_df(
         self, csv_config: CSVConfig = CSVConfig().Instron()
     ) -> pd.DataFrame:
@@ -70,7 +62,7 @@ class InstronSample(Sample):
                 col.STRAIN: stress_strain_df[col.STRAIN],
                 col.STRESS: stress_strain_df[col.STRESS],
                 col.DRAW_RATIO: draw_ratio,
-                col.GAUSSIAN_STRAIN: self.calc_gaussian_strain(draw_ratio),
+                col.GAUSSIAN_STRAIN: draw_ratio**2 - 1 / draw_ratio,
                 col.TRUE_STRESS: draw_ratio * stress_strain_df[col.STRESS],
             }
         )
