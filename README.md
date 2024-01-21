@@ -23,7 +23,7 @@ sample = InstronSample(
     speed_mm_per_min=10,
 )
 
-sample.get_stress_strain_df()
+sample.get_result_df()
 ```
 
 [example](https://github.com/nitta-lab-polymer/process-nitta/tree/main/example)に実行例を置いています。
