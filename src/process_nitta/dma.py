@@ -30,9 +30,9 @@ class DMASample(Base):
         self.temp_range = df.values[0]
         return
 
-    def get_result_df(self) -> pd.DataFrame:
+    def get_result_df(self, csv_config: CSVConfig = CSVConfig().DMA()) -> pd.DataFrame:
         df: pd.DataFrame = pd.read_csv(
             self.file_path,
-            **CSVConfig().DMA().to_dict(),
+            **csv_config.to_dict(),
         )
         return df

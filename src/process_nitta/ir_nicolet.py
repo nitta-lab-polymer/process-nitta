@@ -5,9 +5,11 @@ from process_nitta.models import Base
 
 
 class IRNICOLETSample(Base):
-    def get_result_df(self) -> pd.DataFrame:
+    def get_result_df(
+        self, csv_config: CSVConfig = CSVConfig().IR_NICOLET()
+    ) -> pd.DataFrame:
         df: pd.DataFrame = pd.read_csv(
             self.file_path,
-            **CSVConfig().IR_NICOLET().to_dict(),
+            **csv_config.to_dict(),
         )
         return df
