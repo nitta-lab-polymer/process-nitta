@@ -67,3 +67,10 @@ class InstronSample(Sample):
             }
         )
         return result_df
+
+    def get_raw_df(self, csv_config: CSVConfig = CSVConfig().Instron()) -> pd.DataFrame:
+        df: pd.DataFrame = pd.read_csv(
+            self.file_path,
+            **csv_config.to_dict(),
+        )
+        return df

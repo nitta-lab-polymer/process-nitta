@@ -36,3 +36,10 @@ class DMASample(Base):
             **csv_config.to_dict(),
         )
         return df
+
+    def get_raw_df(self, csv_config: CSVConfig = CSVConfig().DMA()) -> pd.DataFrame:
+        df: pd.DataFrame = pd.read_csv(
+            self.file_path,
+            **csv_config.to_dict(),
+        )
+        return df
