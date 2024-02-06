@@ -31,6 +31,9 @@ class ColumnStrEnum(str, Enum):
     TRUE_STRESS = "True stress $\sigma \lambda$ /-"  # type: ignore
     DRAW_RATIO = "Draw ratio $\lambda$ /-"  # type: ignore
 
+    def __str__(self) -> str:
+        return super().value
+
 
 col = ColumnStrEnum
 
