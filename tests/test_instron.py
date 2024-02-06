@@ -9,10 +9,10 @@ def test_instron():
     sample = InstronSample(
         file_path=f"{workspace_dir}/sample_data/instron.csv",
         name="sample",
-        width_mm=2.5,
-        length_mm=10,
-        thickness_μm=2000,
-        speed_mm_per_min=500,
+        width_mm=0.873,
+        length_mm=4,
+        thickness_μm=2324,
+        speed_mm_per_min=10,
     )
     result_df = sample.get_result_df()
     answer_df = pd.read_csv(
