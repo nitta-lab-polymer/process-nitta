@@ -12,7 +12,7 @@ class AGISSample(Sample):
     width_mm: float = 0
     length_mm: float = 0
     thickness_μm: float = 0
-    mean_range: int = 100
+    mean_range: int = 10
 
     def model_post_init(
         self, __context: Any
