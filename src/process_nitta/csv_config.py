@@ -1,4 +1,6 @@
+import re
 from enum import Enum
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel
@@ -33,6 +35,22 @@ class ColumnStrEnum(str, Enum):
 
     def __str__(self) -> str:
         return super().value
+
+
+def fix_broken_csv(path: str, encoding: encodingStr = encodingStr.Shift_JIS) -> Path:
+    target_path = Path(path)
+    with open(target_path, encoding=encoding) as f:
+        s = f.read()
+    s = re.sub(r",+\n", "\n", s)
+    s = re.sub(r"\n,\n", "\n\n", s)
+
+    ext = target_path.suffix
+
+    destination = target_path.parent / f"{target_path.stem}_fixed{ext}"
+    with open(destination, mode="w", encoding=encoding) as f:
+        f.write(s)
+
+    return destination
 
 
 col = ColumnStrEnum
